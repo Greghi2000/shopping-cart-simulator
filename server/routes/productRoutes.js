@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { connect, pool } = require('../config/db');
 
+// Start of route for these routes: /api/products
+
 // Route for getting all products
 router.get('/', (req, res) => {
     pool.query('SELECT * FROM Product', (error, results) => {
