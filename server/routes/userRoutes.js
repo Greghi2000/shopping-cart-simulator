@@ -32,8 +32,17 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-  // Handle registration logic
-  // ...
+    console.log(req.body)
+    const {username, password, email} = req.body
+    pool.query('INSERT INTO User (Username, Password, Email) VALUES (?, ?, ?)', [username, password, email], (error, results) => {
+        if (error) {
+          console.error('Error executing the query');
+          console.error(error);
+          return res.status(500).json({ error: 'Internal Server Error' });
+        }
+      
+        res.status(201).json({ message: 'User added successfully' });
+    });
 });
 
 // Route for logging in a user
