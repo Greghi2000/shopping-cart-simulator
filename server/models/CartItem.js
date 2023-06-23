@@ -1,40 +1,48 @@
 class CartItem {
-    constructor(ID, quantity, cartID, productID) {
+    constructor(ID, quantity, cart, product) {
       this._ID = ID;
       this._quantity = quantity;
-      this._cartID = cartID;
-      this._productID = productID;
+      this._cart = cart;
+      this._product = product;
     }
   
     get ID() {
       return this._ID;
     }
   
-    set ID(ID) {
-      this._ID = ID;
+    set productID(ID) {
+      this._product.ID = ID;
     }
-  
-    get quantity() {
-      return this._quantity;
+
+    get productID() {
+      return this._product.ID;
+    }
+    
+    set cartID(ID) {
+      this._cart.ID = ID;
+    }
+
+    get cartID() {
+      return this._cart.ID;
     }
   
     set quantity(quantity) {
       this._quantity = quantity;
     }
   
-    get cartID() {
-      return this._cartID;
+    get cart() {
+      return this._cart;
     }
   
-    set cartID(cartID) {
-      this._cartID = cartID;
+    set cart(cart) {
+      this._cart = cart;
     }
   
-    get productID() {
-      return this._productID;
+    get product() {
+      return this._product;
     }
   
-    set productID(productID) {
-      this._productID = productID;
+    set product(product) {
+      this._product = product;
     }
 }

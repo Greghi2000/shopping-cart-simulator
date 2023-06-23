@@ -105,5 +105,4 @@ router.put('/cartItem/update/:cartItemId', (req, res) => {
     })
 });
 
-// return all objs that contain cartId of ???
 module.exports = router;

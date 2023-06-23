@@ -1,10 +1,35 @@
 class Cart {
-    constructor(ID, userID) {
+    constructor(ID, user) {
       this._ID = ID;
-      this._userID = userID;
+      this._user = user;
       this._totalPrice = 0;
+      this._CartItems = [];
+    }
+
+    set userID(ID) {
+      this._user.ID = ID;
+    }
+
+    get userID() {
+      return this._user.ID;
     }
   
+    get _CartItems() {
+      return this._CartItems;
+    }
+
+    set CartItems(CartItems) {
+      this._CartItems = CartItems;
+    }
+
+    get _CartItems() {
+      return this._CartItems;
+    }
+
+    set CartItems(CartItems) {
+      this._CartItems = CartItems;
+    }
+
     get ID() {
       return this._ID;
     }
@@ -14,11 +39,11 @@ class Cart {
     }
   
     get userID() {
-      return this._userID;
+      return this._user;
     }
   
     set userID(userID) {
-      this._userID = userID;
+      this._user = userID;
     }
   
     get totalPrice() {
