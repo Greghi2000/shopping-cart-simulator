@@ -1,0 +1,33 @@
+.navbar {
+background-color: #1754b0;
+color: #fff;
+padding: 10px;
+}
+
+.nav-center {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+h3 {
+font-size: 20px;
+margin: 0;
+}
+
+.nav-container {
+display: flex;
+align-items: center;
+}
+
+.amount-container {
+background-color: #fff;
+color: #1754b0;
+padding: 5px 10px;
+border-radius: 50%;
+}
+
+.total-amount {
+font-size: 14px;
+margin: 0;
+}
