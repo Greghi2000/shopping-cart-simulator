@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <NavBar/>
-      <CartContainer/>
+      {/* <CartContainer/> */}
       <ProductList/>
     </>
   );

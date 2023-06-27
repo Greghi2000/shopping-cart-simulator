@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../utils/api";
 import React, { useEffect } from 'react';
 import { setProducts } from '../store/product';
+import ProductItem from '../components/ProductItem'
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -23,12 +24,7 @@ const ProductList = () => {
     <>
       {products && products.length > 0 ? (
         products.map(product => (
-          <div key={product.ID}>
-            <h2>{product.Title}</h2>
-            <p>{product.Description}</p>
-            <img src={product.ImageURL} alt={product.Title} />
-            <hr />
-          </div>
+          <ProductItem key={product.ID} {...product}/>
         ))
       ) : (
         <p>No products found.</p>
