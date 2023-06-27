@@ -22,6 +22,13 @@ const CartContainer = () => {
                     // pass all the props down eg: id={id}, name={name}, the spread automatically does it for me
                 })}
             </div>
+            <footer>
+                <hr />
+                <h4>
+                    total <span>${totalPrice}</span>
+                </h4>
+                <button className="clear-button">Clear Cart</button>
+            </footer>
         </section>
     );
 }

@@ -6,10 +6,17 @@ const initialState = {
 }
 
 const productSlice = createSlice({
-    name: 'products',
+    name: "products",
     initialState,
-})
+    reducers: {
+      setProducts: (state, action) => {
+        state.items = action.payload;
+        state.isLoaded = true;
+      },
+    },
+  })
 
 console.log(productSlice)
 
+export const { setProducts } = productSlice.actions;
 export default productSlice.reducer
