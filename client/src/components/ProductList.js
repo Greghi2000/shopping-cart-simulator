@@ -3,6 +3,7 @@ import { getProducts } from "../utils/api";
 import React, { useEffect } from 'react';
 import { setProducts } from '../store/product';
 import ProductItem from '../components/ProductItem'
+import './ProductList.css'
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -21,16 +22,16 @@ const ProductList = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="product-list">
       {products && products.length > 0 ? (
         products.map(product => (
           <ProductItem key={product.ID} {...product}/>
         ))
       ) : (
-        <p>No products found.</p>
+        <p className="no-products">No products found.</p>
       )}
-    </>
-  );
+    </div>
+    );
 };
 
 export default ProductList;

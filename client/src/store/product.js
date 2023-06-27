@@ -2,19 +2,20 @@ const { createSlice } = require("@reduxjs/toolkit")
 
 const initialState = {
     items: [],
-    isLoaded: true,
+    isLoaded: false,
 }
 
 const productSlice = createSlice({
     name: "products",
     initialState,
     reducers: {
-      setProducts: (state, action) => {
+      setProducts: (state, action) => { // these are the reducers
+        console.log('This is current state maybe?', state.items)
         state.items = action.payload;
         state.isLoaded = true;
       },
     },
-  })
+})
 
 console.log(productSlice)
 
