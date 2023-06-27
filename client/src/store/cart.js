@@ -13,10 +13,14 @@ const cartSlice = createSlice({
     reducers:{
         clearCart: (state) => {
             state.cartItems = []
+        },
+        setCartById: (state, action) => {
+            state.cartItems = action.payload
         }
     }
 })
 
 console.log(cartSlice)
 
+export const { setCartById } = cartSlice.actions;
 export default cartSlice.reducer

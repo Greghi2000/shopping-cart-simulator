@@ -10,7 +10,7 @@ export const getProducts = async () => {
     }
 };
 //Get product by ID
-export const getProductByID = async (id) => {
+export const getProductById = async (id) => {
     try {
       const response = await fetch(`http://localhost:3000/api/products/${id}`);
       const data = await response.json();
@@ -34,5 +34,16 @@ export const addProduct = async (productData) => {
         console.log(data);
     } catch (error) {
         console.error('Error:', error);
+    }
+};
+// Get cart by ID 
+export const getCartById = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/cart/${id}`);
+      const data = await response.json();
+      console.log('Data from api file: ', data);
+      return data
+    } catch (error) {
+      console.error('Error:', error);
     }
 };

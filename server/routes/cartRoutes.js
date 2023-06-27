@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
     });
 });
 
+// Route for getting the cart by id
 router.get('/:id', (req, res) => {
     const productId = req.params.id;
     pool.query('SELECT * FROM Cart WHERE id = ?', [productId], (error, results) => {

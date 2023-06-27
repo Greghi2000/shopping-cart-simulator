@@ -19,6 +19,8 @@ CREATE TABLE User (
   Username VARCHAR(255) NOT NULL,
   Password VARCHAR(255) NOT NULL,
   Email VARCHAR(255) NOT NULL
+  CartID INT,
+  FOREIGN KEY (CartID) REFERENCES Cart(ID)
 );
 
 -- Create the Product table
@@ -34,8 +36,6 @@ CREATE TABLE Product (
 CREATE TABLE Cart (
   ID INT PRIMARY KEY AUTO_INCREMENT,
   TotalPrice FLOAT NOT NULL,
-  UserID INT,
-  FOREIGN KEY (UserID) REFERENCES User(ID)
 );
 
 -- Create the CartItem table
@@ -59,9 +59,9 @@ INSERT INTO Product (Title, Price, Description, ImageURL) VALUES
   ('Product 2', 29.99, 'Description for Product 2', 'https://example.com/product2.jpg');
 
 -- Insert sample data into the Cart table
-INSERT INTO Cart (TotalPrice, UserID) VALUES
-  (0, 1),
-  (0, 2);
+INSERT INTO Cart (TotalPrice) VALUES
+  (0),
+  (0);
 
 -- Insert sample data into the CartItem table
 INSERT INTO CartItem (Quantity, CartID, ProductID) VALUES

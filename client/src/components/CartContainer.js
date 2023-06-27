@@ -1,10 +1,23 @@
-import Cart from "../store/cart";
+import Cart, { setCartById } from "../store/cart";
 import CartItem from './CartItem';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './NavBar.css';
+import { getCartById } from "../utils/api";
+import { useEffect } from "react";
 
 const CartContainer = () => {
-    const { user, totalPrice, cartItems } = useSelector((store) => store.cart);
+    const dispatch = useDispatch()
+    const cartItems = useSelector(state => state.products.items);
+    useEffect(() => {
+        getCartById(1) // when auth is done will be user.id user has cart ID and cart does not have user id anymore
+        .then(data => {
+            console.log('Cart by id ', data)
+            dispatch(setCartById(data))
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }, [dispatch])
     if (cartItems.length < 1) {
         return (
             <section>
@@ -15,7 +28,7 @@ const CartContainer = () => {
     }
     return (
         <section className="cart-container">
-            <h2>Your Cart:</h2>
+            {/* <h2>Your Cart:</h2>
             <div>
                 {cartItems.map((item) =>{
                     return <CartItem key={item.id} {...item}/> // Spread operator makes it so that i dont have to individually 
@@ -28,7 +41,7 @@ const CartContainer = () => {
                     total <span>${totalPrice}</span>
                 </h4>
                 <button className="clear-button">Clear Cart</button>
-            </footer>
+            </footer> */}
         </section>
     );
 }
