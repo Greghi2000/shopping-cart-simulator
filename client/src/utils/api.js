@@ -47,3 +47,14 @@ export const getCartById = async (id) => {
       console.error('Error:', error);
     }
 };
+export const getCartItemsByCartId = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/cart/items/${id}`);
+      // once this is done set this to the state.cartItems param in the cart slice
+      const data = await response.json();
+      console.log('Data from api file: ', data);
+      return data
+    } catch (error) {
+      console.error('Error:', error);
+    }
+};

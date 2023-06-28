@@ -1,18 +1,18 @@
-import Cart, { setCartById } from "../store/cart";
+import Cart, { setCartById, setCartItemsByCartId } from "../store/cart";
 import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import './NavBar.css';
-import { getCartById } from "../utils/api";
+import { getCartById, getCartItemsByCartId } from "../utils/api";
 import { useEffect } from "react";
 
 const CartContainer = () => {
     const dispatch = useDispatch()
     const cartItems = useSelector(state => state.products.items);
     useEffect(() => {
-        getCartById(1) // when auth is done will be user.id user has cart ID and cart does not have user id anymore
+        getCartItemsByCartId(1) // when auth is done will be user.id
         .then(data => {
             console.log('Cart by id ', data)
-            dispatch(setCartById(data))
+            dispatch(setCartItemsByCartId(data))
         })
         .catch(error => {
             console.error('Error:', error);
