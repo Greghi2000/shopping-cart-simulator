@@ -15,6 +15,7 @@ export const getProductById = async (id) => {
       const response = await fetch(`http://localhost:3000/api/products/${id}`);
       const data = await response.json();
       console.log(data);
+      return data
     } catch (error) {
       console.error('Error:', error);
     }
@@ -47,14 +48,23 @@ export const getCartById = async (id) => {
       console.error('Error:', error);
     }
 };
+// Get cartItems by cartID 
 export const getCartItemsByCartId = async (id) => {
     try {
       const response = await fetch(`http://localhost:3000/api/cart/items/${id}`);
-      // once this is done set this to the state.cartItems param in the cart slice
       const data = await response.json();
       console.log('Data from api file: ', data);
       return data
     } catch (error) {
       console.error('Error:', error);
     }
+};
+// Delete all from cart
+export const deleteAllFromCart = async () => {
+    // try {
+    //   const response = await fetch(`http://localhost:3000/api/cart/items/${id}`);
+    //   const data = await response.json();
+    // } catch (error) {
+    //   console.error('Error:', error);
+    // }
 };

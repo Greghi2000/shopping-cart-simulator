@@ -4,6 +4,7 @@ import './ProductItem.css'
 const ProductItem = ({ ID, Title, Price, Description, ImageURL }) => {
     const handleAddToCart = () => {
         const product = {ID, Title, Price, Description, ImageURL}
+        console.log(product)
         // addProductToCart(cartID, ID, 1)
     }
     return (

@@ -1,26 +1,41 @@
+import React, { useEffect, useState } from 'react';
 import { ChevronDown, ChevronUp } from '../icons';
+import { getProductById } from '../utils/api';
 import './CartItem.css';
 
-const CartItem = () => {
-    return (
-        <article>
-        <div>
-        {/* <h4>{name}</h4> */}
-        {/* <h4 className='item-price'>${price}</h4> */}
-        <button className='remove-btn'>
-          remove
-        </button>
+const CartItem = ({ ProductID, Quantity }) => {
+  const [product, setProduct] = useState()
+  useEffect(() => {
+    getProductById(ProductID)
+    .then((data) => {
+      setProduct(data)
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }, [ProductID, Quantity])
+
+  return (
+      <article>
+      {product && (
+      <div>
+      <h4>Name: {product.Title}</h4>
+      <h4 className='item-price'>${product.Price}</h4>
+      <button className='remove-btn'>
+        remove
+      </button>
       </div>
+      )}
       <div>
         <button className='amount-btn'>
-          <ChevronUp />
+          {/* <ChevronUp /> */}
         </button>
-        {/* <p className='amount'>{amount}</p> */}
+        <p className='amount'>Quantity: {Quantity}</p>
         <button className='amount-btn'>
-          <ChevronDown />
+          {/* <ChevronDown /> */}
         </button>
       </div>
-        </article>
+      </article>
     );
 }
  

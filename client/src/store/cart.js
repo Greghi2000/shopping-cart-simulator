@@ -20,11 +20,11 @@ const cartSlice = createSlice({
         },
         setCartItemsByCartId: (state, action) => {
             state.cartItems = action.payload
-        }
+        },
     }
 })
 
 console.log(cartSlice)
 
-export const { setCartById, setCartItemsByCartId } = cartSlice.actions;
+export const { setCartById, clearCart, setCartItemsByCartId } = cartSlice.actions;
 export default cartSlice.reducer

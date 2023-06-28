@@ -12,7 +12,6 @@ router.get('/', (req, res) => {
         console.error(error);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
-  
       res.status(200).json(results);
     });
 });
