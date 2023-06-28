@@ -2,7 +2,7 @@ import Cart, { setCartById, setCartItemsByCartId, clearCart } from "../store/car
 import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import './NavBar.css';
-import { getCartById, getCartItemsByCartId } from "../utils/api";
+import { getCartById, getCartItemsByCartId, deleteAllFromCart } from "../utils/api";
 import { useEffect } from "react";
 
 const CartContainer = () => {
@@ -21,7 +21,7 @@ const CartContainer = () => {
 
     const handleClearCart = () => {
         dispatch(clearCart())
-        // do the API call
+        deleteAllFromCart()
     }
     if (cartItems.length < 1) {
         return (

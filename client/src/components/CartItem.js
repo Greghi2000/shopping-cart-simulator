@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, ChevronUp } from '../icons';
-import { getProductById } from '../utils/api';
+import { getProductById, deleteByIdFromCart } from '../utils/api';
 import './CartItem.css';
 
 const CartItem = ({ ProductID, Quantity }) => {
@@ -21,7 +21,7 @@ const CartItem = ({ ProductID, Quantity }) => {
       <div>
       <h4>Name: {product.Title}</h4>
       <h4 className='item-price'>${product.Price}</h4>
-      <button className='remove-btn'>
+      <button onClick={() => {deleteByIdFromCart()}} className='remove-btn'>
         remove
       </button>
       </div>

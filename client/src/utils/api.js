@@ -61,10 +61,23 @@ export const getCartItemsByCartId = async (id) => {
 };
 // Delete all from cart
 export const deleteAllFromCart = async () => {
-    // try {
-    //   const response = await fetch(`http://localhost:3000/api/cart/items/${id}`);
-    //   const data = await response.json();
-    // } catch (error) {
-    //   console.error('Error:', error);
-    // }
+    try {
+      const response = await fetch(`http://localhost:3000/api/cart/cartItem/delete`, {
+        method: 'DELETE'
+    })
+      const data = await response.json();
+    } catch (error) {
+      console.error('Error:', error);
+    }
+};
+// Delete by ID from cart
+export const deleteByIdFromCart = async (id) => {
+    try {
+    const response = await fetch(`http://localhost:3000/api/cart/cartItem/remove/${id}`, {
+        method: 'DELETE'
+    })
+    const data = await response.json();
+    } catch (error) {
+    console.error('Error:', error);
+    }
 };

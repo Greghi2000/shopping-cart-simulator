@@ -93,7 +93,17 @@ router.delete('/cartItem/remove/:cartItemId', (req, res) => {
         res.status(201).json({ message: 'CartItem deleted successfully' });
     })
 });
-  
+// Route for removing all products from the user's cart
+router.delete('/cartItem/delete', (req, res) => {
+    pool.query('DELETE FROM CartItem', (error, results) => {
+    if(error){
+        console.error('Error executing the query');
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+    res.status(201).json({ message: 'All Items in CartItem deleted successfully' });
+    })
+});
 // Route for updating the quantity of a product in the user's cart
 router.put('/cartItem/update/:cartItemId', (req, res) => {
     const cartItemId = req.params.cartItemId;
