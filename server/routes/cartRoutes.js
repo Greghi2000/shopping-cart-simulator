@@ -81,10 +81,10 @@ router.post('/cartItem/add', (req, res) => {
     })
 });
   
-// Route for removing a product from the user's cart
-router.delete('/cartItem/remove/:cartItemId', (req, res) => {
-    const cartItemId = req.params.cartItemId;
-    pool.query('DELETE FROM CartItem WHERE ID = (?)', [cartItemId], (error, results) => {
+// Route for removing a product from the user's cart with product ID
+router.delete('/cartItem/remove/:productId', (req, res) => {
+    const productId = req.params.productId;
+    pool.query('DELETE FROM CartItem WHERE ProductID = (?)', [productId], (error, results) => {
         if(error){
             console.error('Error executing the query');
             console.error(error);

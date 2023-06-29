@@ -12,8 +12,6 @@ function App() {
 }
 
 //WHAT IS LEFT TO DO:
-//Add product to cart
-//Remove product from cart
 //Add new product app
 //Edit quantity in cart
 //Refactor router routes to include controllers

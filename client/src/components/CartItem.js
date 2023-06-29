@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, ChevronUp } from '../icons';
+import { setCartChange } from "../store/cart";
 import { getProductById, deleteByIdFromCart } from '../utils/api';
+import { useDispatch } from 'react-redux';
 import './CartItem.css';
 
 const CartItem = ({ ProductID, Quantity }) => {
   const [product, setProduct] = useState()
+  const dispatch = useDispatch()
   useEffect(() => {
     getProductById(ProductID)
     .then((data) => {
@@ -15,13 +18,18 @@ const CartItem = ({ ProductID, Quantity }) => {
     });
   }, [ProductID, Quantity])
 
+  const handleDeleteFromCart = () => {
+    deleteByIdFromCart(ProductID)
+    dispatch(setCartChange(true))
+  }
+
   return (
       <article>
       {product && (
       <div>
       <h4>Name: {product.Title}</h4>
       <h4 className='item-price'>${product.Price}</h4>
-      <button onClick={() => {deleteByIdFromCart()}} className='remove-btn'>
+      <button onClick={() => {handleDeleteFromCart()}} className='remove-btn'>
         remove
       </button>
       </div>
