@@ -1,11 +1,18 @@
 import React from 'react';
 import './ProductItem.css'
+import { setCartChange } from "../store/cart";
+import { addProductToCart } from '../utils/api';
+import { useDispatch } from 'react-redux';
+
 
 const ProductItem = ({ ID, Title, Price, Description, ImageURL }) => {
+  const dispatch = useDispatch()
     const handleAddToCart = () => {
+      const cartID = 1 // when auth is done will be user.cartID
         const product = {ID, Title, Price, Description, ImageURL}
         console.log(product)
-        // addProductToCart(cartID, ID, 1)
+        addProductToCart({ quantity: 1, cartId: cartID, productId: ID})
+        dispatch(setCartChange(true))
     }
     return (
         <div className="product-item">

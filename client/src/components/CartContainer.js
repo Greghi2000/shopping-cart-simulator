@@ -1,23 +1,26 @@
-import Cart, { setCartById, setCartItemsByCartId, clearCart } from "../store/cart";
+import { setCartChange, setCartItemsByCartId, clearCart } from "../store/cart";
 import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import './NavBar.css';
-import { getCartById, getCartItemsByCartId, deleteAllFromCart } from "../utils/api";
+import { getCartById, getCartItemsByCartId, deleteAllFromCart, addProductToCart } from "../utils/api";
 import { useEffect } from "react";
 
 const CartContainer = () => {
     const dispatch = useDispatch()
     const cartItems = useSelector((state) => state.cart.cartItems);
+    const cartChanged = useSelector((state) => state.cart.cartChange)
     useEffect(() => {
         getCartItemsByCartId(1) // when auth is done will be user.id
         .then(data => {
+            console.log('Cart changed consloe.log ', cartChanged)
             console.log('Cart by id ', data)
             dispatch(setCartItemsByCartId(data))
+            dispatch(setCartChange(false))
         })
         .catch(error => {
             console.error('Error:', error);
         });
-    }, [dispatch])
+    }, [dispatch, cartChanged])
 
     const handleClearCart = () => {
         dispatch(clearCart())
@@ -30,9 +33,6 @@ const CartContainer = () => {
                 <h4>is currently empty</h4>
             </section>
         );
-    }
-    if (cartItems.length >= 0) {
-        console.log('These are the cart items in the if statement', cartItems)
     }
     return (
         <section className="cart-container">

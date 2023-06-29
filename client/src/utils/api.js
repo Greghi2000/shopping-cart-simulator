@@ -9,7 +9,7 @@ export const getProducts = async () => {
       console.error('Error:', error);
     }
 };
-//Get product by ID
+// Get product by ID
 export const getProductById = async (id) => {
     try {
       const response = await fetch(`http://localhost:3000/api/products/${id}`);
@@ -20,7 +20,7 @@ export const getProductById = async (id) => {
       console.error('Error:', error);
     }
 };
-//Add product
+// Add product
 export const addProduct = async (productData) => {
     try {
         const response = await fetch('http://localhost:3000/api/products', {
@@ -77,6 +77,24 @@ export const deleteByIdFromCart = async (id) => {
         method: 'DELETE'
     })
     const data = await response.json();
+    } catch (error) {
+    console.error('Error:', error);
+    }
+};
+// Add product to cart
+export const addProductToCart = async (productData) => {
+    try {
+    const response = await fetch(`http://localhost:3000/api/cart/cartItem/add`, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(productData)
+
+    })
+    console.log('Product data ', productData)
+    const data = await response.json();
+    console.log(data)
     } catch (error) {
     console.error('Error:', error);
     }
