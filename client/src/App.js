@@ -31,7 +31,6 @@ function App() {
 //Make sure the cart is updated to state and actually shows right number when on prods
 //Edit quantity in cart
 //Refactor router routes to include controllers
-//Refactor react so pages are being used
 //Authentication
 
 export default App;

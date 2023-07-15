@@ -1,5 +1,5 @@
 import { addProduct } from '../utils/api'
-import { setAddedProductData } from '../store/product'
+import './AddProduct.css'
 
 const AddProduct = () => {
     const handleSubmit = (e) => {
@@ -27,14 +27,21 @@ const AddProduct = () => {
 
     return (
         <>
-        <h1>Add Prods</h1>
-        <form onSubmit={handleSubmit}>
-            <p>Insert Product Name</p> <input type="text" name="product-name" id="" />
-            <p>Insert Product Price</p> <input type="text" name="product-price" id="" />
-            <p>Insert Product Description</p> <input type="text" name="product-description" id="" />
-            <p>Insert Product Url</p> <input type="text" name="product-image-url" id="" />
-            <button type="submit">Add Product</button>
-        </form>
+            <form className="AddProduct" onSubmit={handleSubmit}>
+                <label htmlFor="product-name">Insert Product Name</label>
+                <input type="text" name="product-name" id="product-name" />
+
+                <label htmlFor="product-price">Insert Product Price</label>
+                <input type="text" name="product-price" id="product-price" />
+
+                <label htmlFor="product-description">Insert Product Description</label>
+                <input type="text" name="product-description" id="product-description" />
+
+                <label htmlFor="product-image-url">Insert Product URL</label>
+                <input type="text" name="product-image-url" id="product-image-url" />
+
+                <button type="submit">Add Product</button>
+            </form>
         </>
     );
 }
