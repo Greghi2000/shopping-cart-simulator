@@ -2,6 +2,11 @@
 background-color: #1754b0;
 color: #fff;
 padding: 10px;
+margin-bottom: 3vh;
+}
+
+h3 {
+text-decoration: none;
 }
 
 .nav-center {
@@ -20,6 +25,13 @@ display: flex;
 align-items: center;
 }
 
+.nav-option {
+margin-right: 10px;
+cursor: pointer;
+color: #fff;
+text-decoration: none;
+}
+
 .amount-container {
 background-color: #fff;
 color: #1754b0;
@@ -30,4 +42,5 @@ border-radius: 50%;
 .total-amount {
 font-size: 14px;
 margin: 0;
+text-decoration: none; /* Add this line */
 }
