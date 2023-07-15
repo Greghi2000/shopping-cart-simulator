@@ -29,7 +29,8 @@ function App() {
 
 //WHAT IS LEFT TO DO:
 //Make sure the cart is updated to state and actually shows right number when on prods
-//Edit quantity in cart
+//Edit quantity in cart with put request
+//Make it so that when you add a product, it can only be added once/adds onto the current prod quanity
 //Refactor router routes to include controllers
 //Authentication
 
