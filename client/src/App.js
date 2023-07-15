@@ -28,7 +28,7 @@ function App() {
 // is defined here, it will now know when you click on anything that has that link where to send you and what to display
 
 //WHAT IS LEFT TO DO:
-//Add new product app
+//Make sure the cart is updated to state and actually shows right number when on prods
 //Edit quantity in cart
 //Refactor router routes to include controllers
 //Refactor react so pages are being used

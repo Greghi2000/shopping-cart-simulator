@@ -16,24 +16,23 @@ const AddProduct = () => {
             "title": productName,
             "price": productPrice,
             "description": productDescription,
-            "ImageURL": productImageUrl
+            "imageURL": productImageUrl
         }
         addProduct(addedProductData).then(() => {
             // navigate('/products')
+            form.reset()
         })
         console.log(addedProductData)
     }
-
-    setAddedProductData()
 
     return (
         <>
         <h1>Add Prods</h1>
         <form onSubmit={handleSubmit}>
-            <input type="text" name="product-name" id="" />
-            <input type="text" name="product-price" id="" />
-            <input type="text" name="product-description" id="" />
-            <input type="text" name="product-image-url" id="" />
+            <p>Insert Product Name</p> <input type="text" name="product-name" id="" />
+            <p>Insert Product Price</p> <input type="text" name="product-price" id="" />
+            <p>Insert Product Description</p> <input type="text" name="product-description" id="" />
+            <p>Insert Product Url</p> <input type="text" name="product-image-url" id="" />
             <button type="submit">Add Product</button>
         </form>
         </>
