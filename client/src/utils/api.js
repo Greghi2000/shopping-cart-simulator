@@ -23,7 +23,7 @@ export const getProductById = async (id) => {
 // Add product
 export const addProduct = async (productData) => {
     try {
-        const response = await fetch('http://localhost:3000/api/products', {
+        const response = await fetch('http://localhost:3000/api/products/add', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'

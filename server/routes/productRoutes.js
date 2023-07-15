@@ -48,7 +48,7 @@ router.post('/add', (req, res) => {
         return res.status(500).json({ error: 'Internal Server Error' });
       }
     
-      res.status(201).json({ message: 'User added successfully' });
+      res.status(201).json({ message: 'Product added successfully' });
     });
 });
 
