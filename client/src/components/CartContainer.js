@@ -48,7 +48,7 @@ const CartContainer = () => {
                 <h4>
                     {/* total <span>${totalPrice}</span> */}
                 </h4>
-                <button onClick={() => {handleClearCart(); /* deleteAllFromCart() */}} className="clear-button">Clear Cart</button>
+                <button onClick={() => {handleClearCart()}} className="clear-button">Clear Cart</button>
             </footer>
         </section>
     );

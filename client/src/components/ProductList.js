@@ -1,15 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../utils/api";
+import { getProducts, getCartItemsByCartId } from "../utils/api";
 import React, { useEffect } from 'react';
 import { setProducts } from '../store/product';
 import ProductItem from '../components/ProductItem'
-import AddProduct from '../components/AddProduct'
+import { setCartChange, setCartItemsByCartId } from "../store/cart";
 import './ProductList.css'
 import { Link } from 'react-router-dom';
 
 const ProductList = () => {
   const dispatch = useDispatch();
-  const products = useSelector(state => state.products.items);
+  const products = useSelector((state) => state.products.items);
+  const cartChanged = useSelector((state) => state.cart.cartChange)
+
+  useEffect(() => {
+    getCartItemsByCartId(1) // when auth is done will be user.id
+    .then(data => {
+        dispatch(setCartItemsByCartId(data))
+        dispatch(setCartChange(false))
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+    console.log(products, 'products')
+}, [dispatch, cartChanged])
 
   useEffect(() => {
     console.log('Use effect for prods');
@@ -23,12 +36,20 @@ const ProductList = () => {
       });
   }, [dispatch])
 
+
   return (
     <>
     <div className="product-list">
       {products && products.length > 0 ? (
         products.map(product => (
-          <ProductItem key={product.ID} {...product}/>
+          <ProductItem
+          key={product.ID}
+          ID={product.ID}
+          Title={product.Title}
+          Price={product.Price}
+          Description={product.Description}
+          ImageURL={product.ImageURL}
+        />
         ))
       ) : (
         <p className="no-products">No products found.</p>

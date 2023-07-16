@@ -30,6 +30,9 @@ function App() {
 //WHAT IS LEFT TO DO:
 //Make sure the cart is updated to state and actually shows right number when on prods
 //Make it so that when you add a product, it can only be added once/adds onto the current prod quanity
+//Filter for allergens
+//Deploy to pipeline using terraform
+//Use material design for frontend ui
 //Authentication
 
 export default App;

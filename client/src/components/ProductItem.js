@@ -1,18 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProductItem.css'
-import { setCartChange } from "../store/cart";
-import { addProductToCart } from '../utils/api';
+import { setCartChange, setCartItemsByCartId } from "../store/cart";
+import { addProductToCart, getCartItemsByCartId } from '../utils/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
 
 
 const ProductItem = ({ ID, Title, Price, Description, ImageURL }) => {
+  const { id } = useParams();
+  const product = useSelector(state => state.products.items.find(item => item.ID === parseInt(id)));
+  
   const [quantitySelected, setQuantitySelected] = useState(1)
   const productsInCart = useSelector(state => state.cart.cartItems)
-  console.log(productsInCart, 'this is productsInCart')
+  // console.log(productsInCart, 'this is productsInCart')
   const mappedProducts = productsInCart.map(prods => parseInt(prods.ProductID))
 
+  const cartChanged = useSelector((state) => state.cart.cartChange)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    getCartItemsByCartId(1) // when auth is done will be user.id
+    .then(data => {
+        dispatch(setCartItemsByCartId(data))
+        dispatch(setCartChange(false))
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+    console.log(product, 'product')
+  }, [dispatch, cartChanged])
+
     const handleAddToCart = () => {
       for(let proddys of mappedProducts) {
         if(ID === proddys) {
@@ -22,11 +41,9 @@ const ProductItem = ({ ID, Title, Price, Description, ImageURL }) => {
         }
       }
       const cartID = 1 // when auth is done will be user.cartID
-        const product = {ID, Title, Price, Description, ImageURL}
-        console.log(product)
-        addProductToCart({ quantity: quantitySelected, cartId: cartID, productId: ID})
+        console.log(ID, 'This is cart ID')
+        addProductToCart({ "quantity": quantitySelected, "cartId": cartID, "productId": ID})
         dispatch(setCartChange(true))
-        // console.log(productAdded, 'product added printing')
     }
 
     const handleSelectChange = (e) => {
@@ -36,6 +53,7 @@ const ProductItem = ({ ID, Title, Price, Description, ImageURL }) => {
         <div className="product-item">
           <Link to={`/products/${ID}`}><h2>{Title}</h2></Link>
           <p>{Description}</p>
+          <p>This is ID: {ID}</p>
           <p className="price">Price: ${Price}</p>
           <img src={ImageURL} alt={Title} />
           <button onClick={handleAddToCart} className="add-to-cart-btn">Add to Cart</button>
