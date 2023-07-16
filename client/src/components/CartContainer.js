@@ -39,7 +39,7 @@ const CartContainer = () => {
             <h2>Your Cart:</h2>
             <div>
                 {cartItems.map((item) =>{
-                    return <CartItem key={item.id} {...item}/> // Spread operator makes it so that i dont have to individually 
+                    return <CartItem key={item.ID} itemID={item.ID} {...item}/> // Spread operator makes it so that i dont have to individually 
                     // pass all the props down eg: id={id}, name={name}, the spread automatically does it for me
                 })}
             </div>

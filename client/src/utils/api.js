@@ -99,3 +99,20 @@ export const addProductToCart = async (productData) => {
     console.error('Error:', error);
     }
 };
+//Update product qunaitty by cartID
+export const updateCartItemQuantityByCartID = async (ID, quantity) => {
+  try {
+    const response = await fetch(`http://localhost:3000/api/cart/cartItem/update/${ID}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(quantity)
+    })
+    console.log('quantity', quantity)
+    const data = await response.json();
+    console.log('data', data)
+  } catch (error) {
+    console.error('Error', error)
+  }
+}
