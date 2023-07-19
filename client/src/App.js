@@ -6,10 +6,12 @@ import AddProduct from './components/AddProduct';
 import NotFound from './components/NotFound';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CartPage from './pages/CartPage';
+import HomePage from './pages/HomePage';
 function App() {
   return (
     <>
-      <NavBar/>
+      {/* <NavBar/>
       <Routes>
           <Route exact path="/cart" element={<CartContainer/>} />
           <Route exact path="/products">
@@ -18,7 +20,20 @@ function App() {
             <Route exact path="add-new-product" element={<AddProduct/>} />
           </Route>
           <Route exact path="*" element={<NotFound/>}/>
+      </Routes> */}
+      <>
+      <NavBar/>
+      <Routes>
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/cart" element={<CartPage/>} />
+          <Route path="/products">
+            <Route index element={<ProductList/>} />
+            <Route path=":id" element={<ProductItem/>} />
+            <Route path="add-new-product" element={<AddProduct/>} />
+          </Route>
+          <Route path="*" element={<NotFound/>}/>
       </Routes>
+    </>
     </>
   );
 }
@@ -28,10 +43,9 @@ function App() {
 // is defined here, it will now know when you click on anything that has that link where to send you and what to display
 
 //WHAT IS LEFT TO DO:
-//Make sure the cart is updated to state and actually shows right number when on prods
+//Make total tally up in cart. Make products in cart cliccable
 //Make it so that when you add a product, it can only be added once/adds onto the current prod quanity
-//Filter for allergens
-//Deploy to pipeline using terraform
+//Deploy a pipeline using terraform
 //Use material design for frontend ui
 //Authentication
 

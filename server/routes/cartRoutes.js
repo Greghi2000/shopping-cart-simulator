@@ -28,4 +28,7 @@ router.delete('/cartItem/delete', cartController.removeAllFromCart);
 // Route for updating the quantity of a product
 router.put('/cartItem/update/:cartItemId', cartController.updateCartItemQuantity);
 
+// Route for getting total price of a cart by ID
+router.get('/getTotalPrice/:cartId', cartController.getTotalPrice);
+
 module.exports = router;

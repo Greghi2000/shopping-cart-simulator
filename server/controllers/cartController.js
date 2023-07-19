@@ -105,3 +105,23 @@ exports.updateCartItemQuantity = (req, res) => {
         res.status(201).json({ message: 'CartItem quantity updated successfully' });
     })
 }
+exports.getTotalPrice = (req, res) => {
+    const cartId = req.params.cartId;
+    pool.query(
+        'SELECT Cart.ID AS CartID, SUM(Product.Price * CartItem.Quantity) AS TotalPrice ' +
+        'FROM Cart ' +
+        'JOIN CartItem ON Cart.ID = CartItem.CartID ' +
+        'JOIN Product ON CartItem.ProductID = Product.ID ' +
+        'WHERE Cart.ID = ? ' +
+        'GROUP BY Cart.ID',
+        [cartId],
+        (error, results) => {
+            if (error) {
+                console.error('Error executing the query');
+                console.error(error);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+            res.status(200).json(results); 
+        }
+    )
+}

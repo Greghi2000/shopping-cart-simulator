@@ -45,10 +45,6 @@ const ProductList = () => {
           <ProductItem
           key={product.ID}
           ID={product.ID}
-          Title={product.Title}
-          Price={product.Price}
-          Description={product.Description}
-          ImageURL={product.ImageURL}
         />
         ))
       ) : (
