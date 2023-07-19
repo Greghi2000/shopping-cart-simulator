@@ -51,7 +51,6 @@ const ProductList = () => {
         <p className="no-products">No products found.</p>
       )}
     </div>
-    <Link to='/products/add-new-product'> Add Products </Link>
     </>
     );
 };

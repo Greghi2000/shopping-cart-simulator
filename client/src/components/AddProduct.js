@@ -19,7 +19,6 @@ const AddProduct = () => {
             "imageURL": productImageUrl
         }
         addProduct(addedProductData).then(() => {
-            // navigate('/products')
             form.reset()
         })
         console.log(addedProductData)

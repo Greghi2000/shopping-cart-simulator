@@ -96,7 +96,9 @@ exports.removeAllFromCart = (req, res) => {
 exports.updateCartItemQuantity = (req, res) => {
     const cartItemId = req.params.cartItemId;
     const { quantity } = req.body;
-    pool.query('UPDATE CartItem SET Quantity = ? WHERE ID = ?', [quantity, cartItemId], (error, results) => {
+    const parsedQuantity = parseInt(quantity);
+    console.log(`Parsed quantity: ${parsedQuantity}`);
+    pool.query('UPDATE CartItem SET Quantity = ? WHERE ID = ?', [parsedQuantity, cartItemId], (error, results) => {
         if(error){
             console.error('Error executing the query');
             console.error(error);

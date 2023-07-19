@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ProductItem.css'
-import { setCartChange, setCartItemsByCartId } from "../store/cart";
-import { addProductToCart, getCartItemsByCartId, getProductById } from '../utils/api';
+import cart, { setCartChange, setCartItemsByCartId } from "../store/cart";
+import { addProductToCart, getCartItemsByCartId, getProductById, updateCartItemQuantityByCartID } from '../utils/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -10,13 +10,10 @@ import { useParams } from 'react-router-dom';
 
 const ProductItem = ({ ID }) => {
   const { id } = useParams();
-  const product = useSelector(state => state.products.items.find(item => item.ID === parseInt(id)));
   
   const [quantitySelected, setQuantitySelected] = useState(1)
   const [currentProduct, setCurrentProduct] = useState(null)
   const productsInCart = useSelector(state => state.cart.cartItems)
-  // console.log(productsInCart, 'this is productsInCart')
-  const mappedProducts = productsInCart.map(prods => parseInt(prods.ProductID))
 
   const cartChanged = useSelector((state) => state.cart.cartChange)
   const dispatch = useDispatch()
@@ -30,7 +27,6 @@ const ProductItem = ({ ID }) => {
     .catch(error => {
         console.error('Error:', error);
     });
-    console.log(product, 'product')
   }, [dispatch, cartChanged])
 
    useEffect(() => {
@@ -41,21 +37,29 @@ const ProductItem = ({ ID }) => {
      .catch(error => {
          console.error('Error:', error);
      });
-     console.log(product, 'product')
    }, [id, ID])
 
     const handleAddToCart = () => {
-      for(let proddys of mappedProducts) {
-        if(ID === proddys) {
-          console.log('It worked!')
-          // do the put request editing the quantity and not adding new one to cart
-          // insert the rest of the code in an else statement to make sure they dont overlap eachother
-        }
+      const cartProduct = productsInCart.find(prods => prods.ProductID === ID);
+      console.log(productsInCart, 'productsInCart')
+
+      if (cartProduct) {
+        // if product already in cart, update its quantity
+        const cartItemId = cartProduct.ID
+        const quantityPayload = {"quantity": parseInt(cartProduct.Quantity) + parseInt(quantitySelected)}
+        updateCartItemQuantityByCartID(cartItemId, quantityPayload)
+        .then(response => {
+          dispatch(setCartChange(true));
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      } else {
+        const cartID = 1 // when auth is done will be user.cartID
+          console.log(ID, 'This is cart ID')
+          addProductToCart({ "quantity": quantitySelected, "cartId": cartID, "productId": ID || id})
+          dispatch(setCartChange(true))
       }
-      const cartID = 1 // when auth is done will be user.cartID
-        console.log(ID, 'This is cart ID')
-        addProductToCart({ "quantity": quantitySelected, "cartId": cartID, "productId": ID})
-        dispatch(setCartChange(true))
     }
 
     const handleSelectChange = (e) => {
