@@ -43,7 +43,7 @@ function App() {
 // is defined here, it will now know when you click on anything that has that link where to send you and what to display
 
 //WHAT IS LEFT TO DO:
-//Make total tally up in cart. Make products in cart cliccable
+//Make products in cart cliccable
 //Make it so that when you add a product, it can only be added once/adds onto the current prod quanity
 //Deploy a pipeline using terraform
 //Use material design for frontend ui

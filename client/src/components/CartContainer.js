@@ -2,13 +2,14 @@ import { setCartChange, setCartItemsByCartId, clearCart } from "../store/cart";
 import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import './NavBar.css';
-import { getCartById, getCartItemsByCartId, deleteAllFromCart, addProductToCart } from "../utils/api";
-import { useEffect } from "react";
+import { getCartById, getCartItemsByCartId, deleteAllFromCart, getTotalPrice } from "../utils/api";
+import { useEffect, useState } from "react";
 
 const CartContainer = () => {
     const dispatch = useDispatch()
     const cartItems = useSelector((state) => state.cart.cartItems);
     const cartChanged = useSelector((state) => state.cart.cartChange)
+    const [cartTotalPrice, setCartTotalPrice] = useState(0)
     useEffect(() => {
         getCartItemsByCartId(1) // when auth is done will be user.id
         .then(data => {
@@ -20,6 +21,13 @@ const CartContainer = () => {
         .catch(error => {
             console.error('Error:', error);
         });
+        getTotalPrice(1) // when auth is done will be user.id
+        .then(data => {
+            if (data && data.length > 0) {
+                setCartTotalPrice(data)
+            }
+            dispatch(setCartChange(false))
+        })
     }, [dispatch, cartChanged])
 
     const handleClearCart = () => {
@@ -34,23 +42,30 @@ const CartContainer = () => {
             </section>
         );
     }
+    let newCartTotalPrice;
+    if (cartTotalPrice && cartTotalPrice.length > 0) {
+        newCartTotalPrice = cartTotalPrice[0].TotalPrice.toFixed(2);
+    }
+    
+
     return (
-        <section className="cart-container">
-            <h2>Your Cart:</h2>
-            <div>
-                {cartItems.map((item) =>{
-                    return <CartItem key={item.ID} itemID={item.ID} {...item}/> // Spread operator makes it so that i dont have to individually 
-                    // pass all the props down eg: id={id}, name={name}, the spread automatically does it for me
-                })}
-            </div>
-            <footer>
-                <hr />
-                <h4>
-                    {/* total <span>${totalPrice}</span> */}
-                </h4>
-                <button onClick={() => {handleClearCart()}} className="clear-button">Clear Cart</button>
-            </footer>
-        </section>
+<section className="cart-container">
+      <h2>Your Cart:</h2>
+      <div>
+        {cartItems.map((item) => (
+          <CartItem key={item.ID} itemID={item.ID} {...item} />
+        ))}
+      </div>
+      <footer>
+        <hr />
+        <h4>
+          Total: <span>${newCartTotalPrice !== null ? newCartTotalPrice : 'N/A'}</span>
+        </h4>
+        <button onClick={handleClearCart} className="clear-button">
+          Clear Cart
+        </button>
+      </footer>
+    </section>
     );
 }
  
