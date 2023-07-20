@@ -1,29 +1,31 @@
-import { useDispatch } from "react-redux";
-import { signIn } from "../auth"
-import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { setUser, setIsLoading } from "../store/authentication";
+import { useContext, useState } from "react"
+import { AuthContext } from "../AuthContext"
 
 const LogIn = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
+    const navigate = useNavigate()
 
+    const { user, signIn } = useContext(AuthContext)
+  
     const handleSubmit = async (e) => {
-      e.preventDefault();
-      setError("");
+      e.preventDefault()
+      setError("")
   
       try {
-        await signIn(username, password);
-        dispatch(setUser(username));
-        navigate("/");
+        await signIn(username, password)
+        navigate('/')
+        console.log('This is username', username, 'This is password', password)
       } catch (err) {
-        setError(err.message);
-      } finally {
-        dispatch(setIsLoading(false));
+        setError(err.message)
       }
+    }
+
+    if (user) {
+      // Redirect to the profile page
+      navigate("/profile")
     }
 
     return (

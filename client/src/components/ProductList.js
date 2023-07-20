@@ -5,7 +5,6 @@ import { setProducts } from '../store/product';
 import ProductItem from '../components/ProductItem'
 import { setCartChange, setCartItemsByCartId } from "../store/cart";
 import './ProductList.css'
-import { Link } from 'react-router-dom';
 
 const ProductList = () => {
   const dispatch = useDispatch();

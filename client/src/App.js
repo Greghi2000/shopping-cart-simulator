@@ -1,5 +1,4 @@
 import NavBar from './components/NavBar';
-import CartContainer from './components/CartContainer';
 import ProductList from './components/ProductList';
 import ProductItem from './components/ProductItem';
 import AddProduct from './components/AddProduct';
@@ -12,36 +11,25 @@ import SignUpPage from './pages/SignUpPage';
 import ConfirmSignUp from './pages/ConfirmSignUp';
 import LogIn from './pages/LogIn';
 import UserPage from './pages/UserPage';
+import RouteGuard from './components/RouteGuard';
 function App() {
   return (
     <>
-      {/* <NavBar/>
-      <Routes>
-          <Route exact path="/cart" element={<CartContainer/>} />
-          <Route exact path="/products">
-            <Route index element={<ProductList/>} />
-            <Route exact path=":id" element={<ProductItem/>} />
-            <Route exact path="add-new-product" element={<AddProduct/>} />
-          </Route>
-          <Route exact path="*" element={<NotFound/>}/>
-      </Routes> */}
-      <>
       <NavBar/>
       <Routes>
-      <Route path="/signUp" element={<SignUpPage />} />
-      <Route path="/confirm-sign-up" element={<ConfirmSignUp />} />
-      <Route path="/login" element={<LogIn />} />
-      <Route path="/profile" element={<UserPage />} />
-          <Route path="/" element={<HomePage/>} />
-          <Route path="/cart" element={<CartPage/>} />
-          <Route path="/products">
-            <Route index element={<ProductList/>} />
-            <Route path=":id" element={<ProductItem/>} />
-            <Route path="add-new-product" element={<AddProduct/>} />
-          </Route>
-          <Route path="*" element={<NotFound/>}/>
+        <Route path="/signUp" element={<SignUpPage />} />
+        <Route path="/confirm-sign-up" element={<ConfirmSignUp />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/profile" element={<RouteGuard><UserPage /></RouteGuard>} />
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/cart" element={<CartPage/>} />
+        <Route path="/products">
+          <Route index element={<ProductList/>} />
+          <Route path=":id" element={<ProductItem/>} />
+          <Route path="add-new-product" element={<RouteGuard><AddProduct/></RouteGuard>} />
+        </Route>
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
-    </>
     </>
   );
 }
@@ -55,5 +43,8 @@ function App() {
 //Build pipeline using terraform
 //Use material design for frontend ui
 //Authentication
+
+
+//getCurrentUser SET STATE TO THIS, whatevre it returns set the user state to it in the auth.js file
 
 export default App;

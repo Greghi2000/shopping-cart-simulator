@@ -1,32 +1,18 @@
-import { useEffect, useState } from "react"
-import { getCurrentUser, signOut } from "../auth"
+import { useContext } from "react"
+import { AuthContext } from "../AuthContext"
 
 const UserPage = () => {
-    const [userData, setUser] = useState()
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const user = await getCurrentUser()
-        setUser(user)
-      } catch (err) {
-        console.error(err)
-      }
-    }
-
-    fetchUser()
-  }, [])
+  const { user, signOut } = useContext(AuthContext)
 
   return (
     <div>
-      {userData && (
+      {user && (
         <div>
           <h2>User Profile</h2>
-          <p>Username: {userData.username}</p>
-          <p>Email: {userData.email}</p>
+          <p>Username: {user.username}</p>
+          <p>Email: {user.email}</p>
         </div>
       )}
-
       <button onClick={signOut}>Sign Out</button>
     </div>
   )
