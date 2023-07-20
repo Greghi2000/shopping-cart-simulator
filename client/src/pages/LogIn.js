@@ -1,22 +1,28 @@
-import { Link, unstable_HistoryRouter, useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux";
 import { signIn } from "../auth"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { setUser, setIsLoading } from "../store/authentication";
 
 const LogIn = () => {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [error, setError] = useState("")
-    const navigate = useNavigate()
-  
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
     const handleSubmit = async (e) => {
-      e.preventDefault()
-      setError("")
+      e.preventDefault();
+      setError("");
   
       try {
-        await signIn(username, password)
-        navigate('/')
+        await signIn(username, password);
+        dispatch(setUser(username));
+        navigate("/");
       } catch (err) {
-        setError(err.message)
+        setError(err.message);
+      } finally {
+        dispatch(setIsLoading(false));
       }
     }
 

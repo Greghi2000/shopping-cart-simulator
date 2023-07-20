@@ -13,6 +13,7 @@ const ConfirmSignUp = () => {
       try {
         await confirmSignUp(username, code)
         setSuccess(true)
+        //set the auth user redux state to username
       } catch (err) {
         setError(err.message)
       }
@@ -22,7 +23,7 @@ const ConfirmSignUp = () => {
       return (
         <div>
           <h2>Confirmation successful!</h2>
-          <p>You can now log in with your credentials. Go rock that app!</p>
+          <p>You can now log in with your credentials. Go browse the app!</p>
         </div>
       )
     }

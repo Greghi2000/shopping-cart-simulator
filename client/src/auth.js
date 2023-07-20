@@ -47,6 +47,8 @@ export function signIn(username, password) {
         Username: username,
         Password: password,
       })
+      console.log('username from signIn what i would set to state', username)
+      //set this to redux user state
   
       const cognitoUser = new CognitoUser({
         Username: username,
@@ -77,6 +79,8 @@ export function signOut() {
     if (cognitoUser) {
       cognitoUser.signOut()
     }
+    //set the auth user redux state to null
+
 }
 
 //Gets the current users username, email & sub. Use to get user data
