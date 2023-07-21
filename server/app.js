@@ -3,6 +3,7 @@ const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/cartRoutes');
+const allergenRoutes = require('./routes/allergenRoutes');
 
 // Create an express application
 const app = express();
@@ -15,5 +16,6 @@ app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/allergens', allergenRoutes);
 
 module.exports = app;

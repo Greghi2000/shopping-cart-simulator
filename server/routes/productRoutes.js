@@ -13,6 +13,4 @@ router.get('/:id', productController.getProductById)
 // Route for adding a product to db
 router.post('/add', productController.addProduct)
 
-
-// Export the router
 module.exports = router;

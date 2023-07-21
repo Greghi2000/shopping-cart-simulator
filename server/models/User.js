@@ -39,4 +39,4 @@ class User {
       this._email = email;
     }
 }
-  
+module.exports = User;

@@ -1,9 +1,9 @@
 class CartItem {
-  constructor(ID, quantity, cart, product) {
+  constructor(ID, quantity, cart, productID) {
     this._ID = ID;
     this._quantity = quantity;
     this._cart = cart;
-    this._product = product;
+    this._productID = productID;
   }
 
   get totalPrice() {
@@ -15,11 +15,11 @@ class CartItem {
   }
 
   set productID(ID) {
-    this._product.ID = ID;
+    this._productID = ID;
   }
 
   get productID() {
-    return this._product.ID;
+    return this._productID;
   }
   
   set cartID(ID) {
@@ -45,12 +45,5 @@ class CartItem {
   set cart(cart) {
     this._cart = cart;
   }
-
-  get product() {
-    return this._product;
-  }
-
-  set product(product) {
-    this._product = product;
-  }
 }
+module.exports = CartItem;

@@ -32,21 +32,23 @@ const ProductItem = ({ ID }) => {
    useEffect(() => {
      getProductById(ID || id)
      .then(data => {
-         setCurrentProduct(data)
+        setCurrentProduct(data)
      })
      .catch(error => {
-         console.error('Error:', error);
+        console.error('Error:', error);
      });
    }, [id, ID])
 
     const handleAddToCart = () => {
-      const cartProduct = productsInCart.find(prods => prods.ProductID === ID);
+      const cartProduct = productsInCart.find(prods => prods._productID === ID);
       console.log(productsInCart, 'productsInCart')
+      console.log('productsInCartID', ID)
 
       if (cartProduct) {
         // if product already in cart, update its quantity
-        const cartItemId = cartProduct.ID
-        const quantityPayload = {"quantity": parseInt(cartProduct.Quantity) + parseInt(quantitySelected)}
+        const cartItemId = cartProduct._ID
+        console.log(cartItemId)
+        const quantityPayload = {"quantity": parseInt(cartProduct._quantity) + parseInt(quantitySelected)}
         updateCartItemQuantityByCartID(cartItemId, quantityPayload)
         .then(response => {
           dispatch(setCartChange(true));
@@ -69,13 +71,13 @@ const ProductItem = ({ ID }) => {
       <>
       {currentProduct ? (
         <div className="product-item">
-          <Link to={`/products/${currentProduct.ID}`}>
-            <h2>{currentProduct.Title}</h2>
+          <Link to={`/products/${currentProduct._ID}`}>
+            <h2>{currentProduct._title}</h2>
           </Link>
-          <p>{currentProduct.Description}</p>
+          <p>{currentProduct._description}</p>
           <p>This is ID: {currentProduct.ID}</p>
-          <p className="price">Price: ${currentProduct.Price}</p>
-          <img src={currentProduct.ImageURL} alt={currentProduct.Title} />
+          <p className="price">Price: ${currentProduct._price}</p>
+          <img src={currentProduct._imageURL} alt={currentProduct._title} />
           <button onClick={handleAddToCart} className="add-to-cart-btn">
             Add to Cart
           </button>

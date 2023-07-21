@@ -26,7 +26,7 @@ function App() {
         <Route path="/products">
           <Route index element={<ProductList/>} />
           <Route path=":id" element={<ProductItem/>} />
-          <Route path="add-new-product" element={<RouteGuard><AddProduct/></RouteGuard>} />
+          <Route path="add-new-product" element={<AddProduct/>} />
         </Route>
         <Route path="*" element={<NotFound/>}/>
       </Routes>
@@ -40,9 +40,13 @@ function App() {
 
 //WHAT IS LEFT TO DO:
 //Maybe add filters?
+//Implement auth in backend
+//Refactor backend API calls to include OOP/models
+//Improve UI, maybe material design if i have time?
+
+
 //Build pipeline using terraform
 //Use material design for frontend ui
-//Authentication
 
 
 //getCurrentUser SET STATE TO THIS, whatevre it returns set the user state to it in the auth.js file

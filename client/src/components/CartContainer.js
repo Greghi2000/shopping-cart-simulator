@@ -13,7 +13,6 @@ const CartContainer = () => {
     useEffect(() => {
         getCartItemsByCartId(1) // when auth is done will be user.id
         .then(data => {
-            console.log('Cart changed consloe.log ', cartChanged)
             console.log('Cart by id ', data)
             dispatch(setCartItemsByCartId(data))
             dispatch(setCartChange(false))
@@ -44,6 +43,7 @@ const CartContainer = () => {
     }
     let newCartTotalPrice;
     if (cartTotalPrice && cartTotalPrice.length > 0) {
+        console.log(cartItems)
         newCartTotalPrice = cartTotalPrice[0].TotalPrice.toFixed(2);
     }
     
@@ -53,7 +53,7 @@ const CartContainer = () => {
       <h2>Your Cart:</h2>
       <div>
         {cartItems.map((item) => (
-          <CartItem key={item.ID} itemID={item.ID} {...item} />
+          <CartItem key={item._ID} itemID={item._ID} {...item} />
         ))}
       </div>
       <footer>

@@ -42,8 +42,8 @@ const ProductList = () => {
       {products && products.length > 0 ? (
         products.map(product => (
           <ProductItem
-          key={product.ID}
-          ID={product.ID}
+          key={product._ID}
+          ID={product._ID}
         />
         ))
       ) : (

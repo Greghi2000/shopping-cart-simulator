@@ -5,28 +5,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateCartItemQuantityByCartID } from "../utils/api";
 import './CartItem.css';
 
-const CartItem = ({ ProductID, Quantity, itemID }) => {
+const CartItem = ({ _productID, _quantity, _ID }) => {
   const [product, setProduct] = useState()
-  const [quantity, setQuantity] = useState(Quantity)
+  const [quantity, setQuantity] = useState(_quantity)
   const dispatch = useDispatch()
   const isQuantityChanged = useSelector(state => state.cart.isQuantityChanged)
   useEffect(() => {
-    getProductById(ProductID)
+    getProductById(_productID)
     .then((data) => {
+      console.log(_ID)
       setProduct(data)
     })
     .catch(error => {
       console.error('Error:', error);
     });
-  }, [ProductID, Quantity])
+  }, [_productID, _quantity])
 
   const handleDeleteFromCart = () => {
-    deleteByIdFromCart(ProductID)
+    deleteByIdFromCart(_productID)
     dispatch(setCartChange(true))
   }
 
   const handleIncreaseQuantity = () => {
-    console.log(ProductID)
+    console.log(_productID)
     setQuantity(quantity + 1)
     dispatch(setIsQuantityChanged(true))
   };
@@ -39,21 +40,19 @@ const CartItem = ({ ProductID, Quantity, itemID }) => {
   };
 
   const handleConfirmQuantity = () => {
-    // have a put request that changes the quantity of the prod based on the prod id.
-    console.log(ProductID, "ProductID")
+    console.log(_productID, "_productID")
     console.log(quantity, 'quantity')
-    //put request using qunatity as the quantity and cartItemID is 
-    console.log(itemID, 'itemID')
+    console.log(_ID, 'itemID')
     const quantityPayload = {"quantity": quantity}
-    updateCartItemQuantityByCartID(itemID, quantityPayload)
+    updateCartItemQuantityByCartID(_ID, quantityPayload)
   }
 
   return (
     <article className="cart-item">
       {product && (
         <div>
-          <h4>Name: {product.Title}</h4>
-          <h4 className="item-price">${product.Price}</h4>
+          <h4>Name: {product._title}</h4>
+          <h4 className="item-price">${product._price}</h4>
           <button onClick={handleDeleteFromCart} className="remove-btn">
             remove
           </button>

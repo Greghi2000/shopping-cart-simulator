@@ -19,6 +19,7 @@ router.post('/login', (req, res) => {
   // ...
 });
 
+router.post('/register', userController.authUser);
 // Route for logging out a user
 // router.post('/logout', userController.userLogout);
 

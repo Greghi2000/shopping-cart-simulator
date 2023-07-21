@@ -12,7 +12,6 @@ function AuthProvider({ children }) {
       const user = await auth.getCurrentUser()
       setUser(user)
     } catch (err) {
-      // not logged in
       console.log(err)
       setUser(null)
     }
@@ -25,7 +24,6 @@ function AuthProvider({ children }) {
   }, [])
 
   const signIn = async (username, password) => {
-    // debugger
     await auth.signIn(username, password)
     await getCurrentUser()
   }
