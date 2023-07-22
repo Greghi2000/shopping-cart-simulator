@@ -1,0 +1,41 @@
+.user-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .user-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    margin: 2em;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+  }
+  
+  .user-profile h2 {
+    margin-bottom: 1em;
+  }
+  
+  .user-profile p {
+    margin: 0.5em 0;
+  }
+  
+  .sign-out-btn {
+    padding: 0.5em 1em;
+    color: #ffffff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sign-out-btn:hover {
+    background-color: #2980b9;
+  }  

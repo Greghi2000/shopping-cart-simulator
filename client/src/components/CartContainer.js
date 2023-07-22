@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import './NavBar.css';
 import { getCartById, getCartItemsByCartId, deleteAllFromCart, getTotalPrice } from "../utils/api";
 import { useEffect, useState } from "react";
+import './CartContainer.css';
+
 
 const CartContainer = () => {
     const dispatch = useDispatch()

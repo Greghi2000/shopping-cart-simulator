@@ -1,19 +1,20 @@
 import { useContext } from "react"
 import { AuthContext } from "../AuthContext"
+import './UserPage.css'
 
 const UserPage = () => {
   const { user, signOut } = useContext(AuthContext)
 
   return (
-    <div>
+    <div className="user-page">
       {user && (
-        <div>
+        <div className="user-profile">
           <h2>User Profile</h2>
           <p>Username: {user.username}</p>
           <p>Email: {user.email}</p>
         </div>
       )}
-      <button onClick={signOut}>Sign Out</button>
+      <button onClick={signOut} className="sign-out-btn">Sign Out</button>
     </div>
   )
 }

@@ -1,11 +1,11 @@
 import CartContainer from "../components/CartContainer";
+import './CartPage.css';
 
 const CartPage = () => {
     return (
-        <>
-            <h2>CartPage</h2>
+        <div className="cart-page">
             <CartContainer/>
-        </>
+        </div>
     );
 }
  
