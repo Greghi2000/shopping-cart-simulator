@@ -53,7 +53,6 @@ export const getCartItemsByCartId = async (id) => {
   try {
     const response = await fetch(`http://localhost:3000/api/cart/items/${id}`);
     const data = await response.json();
-    console.log('Data from api file: ', data);
     return data
   } catch (error) {
     console.error('Error:', error);
@@ -110,6 +109,7 @@ export const updateCartItemQuantityByCartID = async (ID, quantity) => {
       body: JSON.stringify(quantity)
     })
     console.log('quantity', quantity)
+    console.log('ID', ID)
     const data = await response.json()
     console.log('data', data)
   } catch (error) {

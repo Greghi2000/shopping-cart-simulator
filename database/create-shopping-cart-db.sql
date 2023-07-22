@@ -8,7 +8,6 @@ CREATE DATABASE shopping_cart_db;
 USE shopping_cart_db;
 
 -- Drop the tables if they exist
-DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Product;
 DROP TABLE IF EXISTS Cart;
 DROP TABLE IF EXISTS CartItem;

@@ -51,3 +51,7 @@ function App() {
 //getCurrentUser SET STATE TO THIS, whatevre it returns set the user state to it in the auth.js file
 
 export default App;
+
+// numero risultati produs
+// button active change color
+// products drop of allergens displaying prods

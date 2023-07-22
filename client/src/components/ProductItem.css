@@ -1,4 +1,6 @@
 .product-item {
+  max-width: 600px;
+  /* margin: 1.5rem auto; */
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-gap: 10px;

@@ -7,8 +7,8 @@ import './HomePage.css'
 const HomePage = () => {
     return (
         <div className="home-page">
-            <ProductFilter/>
             <SearchBar/>
+            <ProductFilter/>
             <ProductList/>
             <Link to='/products/add-new-product' className="add-product-link"> Add Products </Link>
         </div>  
