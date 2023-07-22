@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { signUp } from "../auth"
+import { useNavigate } from "react-router-dom"
 
 const SignUpPage = () => {
     const [username, setUsername] = useState("")
@@ -7,7 +8,7 @@ const SignUpPage = () => {
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
     const [success, setSuccess] = useState(false)
-
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError("")
@@ -19,6 +20,16 @@ const SignUpPage = () => {
       setError(err.message)
     }
   }
+
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        navigate("/confirm-sign-up");
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [success, navigate])
 
   if (success) {
     return (

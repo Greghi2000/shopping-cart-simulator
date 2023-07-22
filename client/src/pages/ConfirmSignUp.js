@@ -1,11 +1,13 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { confirmSignUp } from "../auth"
+import { useNavigate } from "react-router-dom"
 
 const ConfirmSignUp = () => {
     const [username, setUsername] = useState("")
     const [code, setCode] = useState("")
     const [error, setError] = useState("")
     const [success, setSuccess] = useState(false)
+    const navigate = useNavigate()
   
     const handleSubmit = async (e) => {
       e.preventDefault()
@@ -17,7 +19,16 @@ const ConfirmSignUp = () => {
         setError(err.message)
       }
     }
+    useEffect(() => {
+      if (success) {
+        const timer = setTimeout(() => {
+          navigate("/login")
+        }, 5000);
   
+        return () => clearTimeout(timer)
+      }
+    }, [success, navigate])
+
     if (success) {
       return (
         <div>
