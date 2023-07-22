@@ -7,8 +7,8 @@ const allergenController = require('../controllers/allergenController')
 // Route for getting all products
 router.get('/', allergenController.getAllAllergens);
 
-// Route for getting a specific product NOT containing specific allergen by ID
-router.get('/:id', allergenController.getAllAllergensNotContainingProductId)
+// Route for getting a specific product NOT containing specific allergen by AllergenID
+router.get('/products-not-containing-allergen/:id', allergenController.getAllProductsNotContainingAllergen)
 
 // // Route for adding a product to db
 // router.post('/add', productController.addProduct)

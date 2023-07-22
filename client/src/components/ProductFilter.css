@@ -1,0 +1,21 @@
+.allergen-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .allergen-filter button {
+    color: #FFFFFF;
+    background-color: #3F51B5;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .allergen-filter button:hover {
+    background-color: #283593;
+  }  

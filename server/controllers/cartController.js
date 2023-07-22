@@ -17,7 +17,7 @@ exports.getAllCarts = (req, res) => {
 }
 
 exports.getCartById = (req, res) => {
-    const cartId = req.params.id;
+    const cartId = req.params.id
     pool.query('SELECT * FROM Cart WHERE ID = ?', [cartId], (error, results) => {
         if (error) {
             console.error('Error executing the query', error);

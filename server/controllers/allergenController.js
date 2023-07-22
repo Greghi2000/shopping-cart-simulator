@@ -1,6 +1,6 @@
-// Import database pool and models
-const { pool } = require('../config/db')
-const AllergenModel = require('../models/Allergen')
+const { pool } = require('../config/db');
+const Allergen = require('../models/Allergen')
+const Product = require('../models/Product')
 
 exports.getAllAllergens = (req, res) => {
     pool.query('SELECT * FROM Allergen', (error, results) => {
@@ -8,28 +8,28 @@ exports.getAllAllergens = (req, res) => {
             console.error('Error executing the query', error);
             res.status(500).json({ error: 'Internal Server Error' });
         } else {
-            const allergens = results.map(row => new AllergenModel(row.ID, row.AllergenName));
+            const allergens = results.map(row => new Allergen(row.ID, row.AllergenName));
             res.status(200).json(allergens);
         }
     })
 }
 
-exports.getAllAllergensNotContainingProductId = (req, res) => {
-    const { productId } = req.params;
+exports.getAllProductsNotContainingAllergen = (req, res) => {
+    const allergenId = req.params.id
     const query = `
-        SELECT Allergen.* 
-        FROM Allergen 
-        LEFT JOIN Product_Allergen ON Allergen.ID = Product_Allergen.AllergenID 
-        WHERE Product_Allergen.ProductID != ? OR Product_Allergen.ProductID IS NULL
-    `
+        SELECT Product.* 
+        FROM Product 
+        LEFT JOIN Product_Allergen ON Product.ID = Product_Allergen.ProductID 
+        WHERE Product_Allergen.AllergenID != ? OR Product_Allergen.ProductID IS NULL
+    `;
 
-    pool.query(query, [productId], (error, results) => {
+    pool.query(query, [allergenId], (error, results) => {
         if (error) {
             console.error('Error executing the query', error);
             res.status(500).json({ error: 'Internal Server Error' });
         } else {
-            const allergens = results.map(row => new AllergenModel(row.ID, row.AllergenName));
-            res.status(200).json(allergens);
+            const products = results.map(row => new Product(row.ID, row.Title, row.Price, row.Description, row.ImageURL));
+            res.status(200).json(products);
         }
-    })
+    });
 }

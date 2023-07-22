@@ -35,16 +35,6 @@ CREATE TABLE Cart (
   ID INT PRIMARY KEY AUTO_INCREMENT
 );
 
--- Create the User table
-CREATE TABLE User (
-  ID INT PRIMARY KEY AUTO_INCREMENT,
-  Username VARCHAR(255) NOT NULL,
-  Password VARCHAR(255) NOT NULL,
-  Email VARCHAR(255) NOT NULL,
-  CartID INT,
-  FOREIGN KEY (CartID) REFERENCES Cart(ID)
-);
-
 -- Create the CartItem table
 CREATE TABLE CartItem (
   ID INT PRIMARY KEY AUTO_INCREMENT,
@@ -65,33 +55,39 @@ CREATE TABLE Product_Allergen (
 
 -- Insert sample data into the Allergen table
 INSERT INTO Allergen (AllergenName) VALUES
-('Allergen 1'),
-('Allergen 2'),
-('Allergen 3'),
-('Allergen 4');
+('Peanuts'),
+('Gluten'),
+('Dairy'),
+('Soy'),
+('Eggs'),
+('Tree Nuts'),
+('Fish'),
+('Shellfish'),
+('No Allergens');
 
 -- Insert sample data into the Product table
 INSERT INTO Product (Title, Price, Description, ImageURL) VALUES
-('Product 1', 19.99, 'Description for Product 1', 'https://example.com/product1.jpg'),
-('Product 2', 29.99, 'Description for Product 2', 'https://example.com/product2.jpg'),
-('Product 3', 39.99, 'Description for Product 3', 'https://example.com/product3.jpg'),
-('Product 4', 49.99, 'Description for Product 4', 'https://example.com/product4.jpg'),
-('Product 5', 59.99, 'Description for Product 5', 'https://example.com/product5.jpg'),
-('Product 6', 69.99, 'Description for Product 6', 'https://example.com/product6.jpg'),
-('Product 7', 79.99, 'Description for Product 7', 'https://example.com/product7.jpg'),
-('Product 8', 89.99, 'Description for Product 8', 'https://example.com/product8.jpg'),
-('Product 9', 99.99, 'Description for Product 9', 'https://example.com/product9.jpg'),
-('Product 10', 109.99, 'Description for Product 10', 'https://example.com/product10.jpg');
+('Organic Apples', 1.99, 'Fresh organic apples from local orchard', 'https://example.com/apples.jpg'),
+('Premium Salmon Fillet', 12.99, 'High-quality salmon fillet, rich in omega-3', 'https://example.com/salmon.jpg'),
+('Whole Grain Bread', 3.49, 'Healthy whole grain bread', 'https://example.com/bread.jpg'),
+('Fresh Spinach', 2.99, 'Tender and nutritious spinach', 'https://example.com/spinach.jpg'),
+('Grass-Fed Beef', 9.99, 'Lean and flavorful grass-fed beef', 'https://example.com/beef.jpg'),
+('Artisanal Pasta', 4.99, 'Handcrafted Italian pasta', 'https://example.com/pasta.jpg'),
+('Cheddar Cheese Block', 5.99, 'Aged cheddar cheese from local dairy', 'https://example.com/cheese.jpg'),
+('Free-Range Eggs', 3.29, 'Free-range eggs from happy hens', 'https://example.com/eggs.jpg'),
+('Quinoa Salad', 6.99, 'Nutritious quinoa salad with fresh vegetables', 'https://example.com/quinoa_salad.jpg'),
+('Organic Almond Butter', 7.49, 'Smooth and creamy almond butter', 'https://example.com/almond_butter.jpg'),
+('Premium Extra Virgin Olive Oil', 9.99, 'High-quality cold-pressed olive oil', 'https://example.com/olive_oil.jpg'),
+('Wild-Caught Atlantic Cod', 11.99, 'Delicious and flaky wild-caught cod', 'https://example.com/cod.jpg'),
+('Organic Quinoa', 4.49, 'Nutritious and versatile organic quinoa', 'https://example.com/quinoa.jpg'),
+('Assam Black Tea', 3.79, 'Rich and flavorful Assam black tea', 'https://example.com/black_tea.jpg'),
+('Organic Baby Spinach', 3.99, 'Fresh and tender organic baby spinach', 'https://example.com/baby_spinach.jpg'),
+('Premium Colombian Coffee Beans', 8.49, 'Rich and aromatic coffee beans from Colombia', 'https://example.com/coffee_beans.jpg');
 
 -- Insert sample data into the Cart table
 INSERT INTO Cart VALUES
 (),
 ();
-
--- Insert sample data into the User table
-INSERT INTO User (Username, Password, Email, CartID) VALUES
-('john_doe', 'password123', 'john@example.com', 1),
-('jane_smith', 'secret456', 'jane@example.com', 2);
 
 -- Insert sample data into the CartItem table
 INSERT INTO CartItem (Quantity, CartID, ProductID) VALUES
@@ -101,13 +97,19 @@ INSERT INTO CartItem (Quantity, CartID, ProductID) VALUES
 
 -- Insert sample data into the Product_Allergen table
 INSERT INTO Product_Allergen (ProductID, AllergenID) VALUES
-(1, 1),
-(2, 2),
-(3, 1),
-(4, 2),
-(5, 3),
-(6, 4),
-(7, 1),
-(8, 2),
-(9, 3),
-(10, 4);
+(1, 9), -- Organic Apples, No allergens
+(2, 7), -- Premium Salmon Fillet, Fish
+(3, 2), -- Whole Grain Bread, Gluten
+(4, 9), -- Fresh Spinach, No allergens
+(5, 9), -- Grass-Fed Beef, No allergens
+(6, 2), -- Artisanal Pasta, Gluten
+(7, 3), -- Cheddar Cheese Block, Dairy
+(8, 9), -- Free-Range Eggs, No allergens
+(9, 9), -- Quinoa Salad, No allergens
+(10, 6), -- Organic Almond Butter, Tree Nuts
+(11, 9), -- Premium Extra Virgin Olive Oil, No allergens
+(12, 7), -- Wild-Caught Atlantic Cod, Fish
+(13, 9), -- Organic Quinoa, No allergens
+(14, 9), -- Assam Black Tea, No allergens
+(15, 9), -- Organic Baby Spinach, No allergens
+(16, 9)  -- Premium Colombian Coffee Beans, No allergens

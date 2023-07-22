@@ -20,3 +20,5 @@ class Allergen {
         this._allergenName = allergenName;
     }
 }
+
+module.exports = Allergen

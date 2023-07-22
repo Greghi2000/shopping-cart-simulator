@@ -8,8 +8,10 @@ import './ProductList.css'
 
 const ProductList = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products.items);
+  const products = useSelector((state) => state.products.items)
   const cartChanged = useSelector((state) => state.cart.cartChange)
+  const filterListener = useSelector((state) => state.filter.isActive)
+  const filteredProducts = useSelector((state) => state.filter.filteredProducts)
 
   useEffect(() => {
     getCartItemsByCartId(1) // when auth is done will be user.id
@@ -38,18 +40,27 @@ const ProductList = () => {
 
   return (
     <>
-    <div className="product-list">
-      {products && products.length > 0 ? (
-        products.map(product => (
-          <ProductItem
-          key={product._ID}
-          ID={product._ID}
-        />
-        ))
-      ) : (
-        <p className="no-products">No products found.</p>
-      )}
-    </div>
+      <div className="product-list">
+        {filterListener && filteredProducts && filteredProducts.length > 0 ? (
+          filteredProducts.map(product => (
+            <ProductItem
+              key={product._ID}
+              ID={product._ID}
+            />
+          ))
+        ) : (
+          products && products.length > 0 ? (
+            products.map(product => (
+              <ProductItem
+                key={product._ID}
+                ID={product._ID}
+              />
+            ))
+          ) : (
+            <p className="no-products">No products found.</p>
+          )
+        )}
+      </div>
     </>
     );
 };

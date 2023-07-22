@@ -96,7 +96,7 @@ export const addProductToCart = async (productData) => {
     const data = await response.json();
     console.log(data)
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error:', error)
   }
 };
 //Update product qunaitty by cartID
@@ -110,7 +110,7 @@ export const updateCartItemQuantityByCartID = async (ID, quantity) => {
       body: JSON.stringify(quantity)
     })
     console.log('quantity', quantity)
-    const data = await response.json();
+    const data = await response.json()
     console.log('data', data)
   } catch (error) {
     console.error('Error', error)
@@ -119,10 +119,30 @@ export const updateCartItemQuantityByCartID = async (ID, quantity) => {
 //Get total price of cart with cartId
 export const getTotalPrice = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/cart/getTotalPrice/${id}`);
+      const response = await fetch(`http://localhost:3000/api/cart/getTotalPrice/${id}`)
       const data = await response.json();
       return data
     } catch (error) {
       console.error('Error:', error);
     }
-};
+}
+//Get get all allergens
+export const getAllAllergens = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/allergens/`)
+      const data = await response.json();
+      return data
+    } catch (error) {
+      console.error('Error:', error);
+    }
+}
+//Get get products not containing allergen with AllergenId
+export const getProductsNotContainingAllergen = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/allergens/products-not-containing-allergen/${id}`)
+      const data = await response.json();
+      return data
+    } catch (error) {
+      console.error('Error:', error);
+    }
+}
