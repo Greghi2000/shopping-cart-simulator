@@ -25,11 +25,30 @@ exports.getAllProductsNotContainingAllergen = (req, res) => {
 
     pool.query(query, [allergenId], (error, results) => {
         if (error) {
-            console.error('Error executing the query', error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            console.error('Error executing the query', error)
+            res.status(500).json({ error: 'Internal Server Error' })
         } else {
             const products = results.map(row => new Product(row.ID, row.Title, row.Price, row.Description, row.ImageURL));
             res.status(200).json(products);
         }
-    });
+    })
+}
+
+exports.getSearchedProducts = (req, res) => {
+    const searchParameter = req.query.search;
+
+    const query = `
+    SELECT * FROM Product
+    WHERE Title LIKE ?
+    `;
+
+    pool.query(query, [`%${searchParameter}%`], (error, results) => {
+        if (error) {
+            console.error('Error executing the query', error)
+            res.status(500).json({ error: 'Internal Server Error' })
+        } else {
+            const products = results.map(row => new Product(row.ID, row.Title, row.Price, row.Description, row.ImageURL));
+            res.status(200).json(products)
+        }
+    })
 }

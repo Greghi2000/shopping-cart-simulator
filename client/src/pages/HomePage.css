@@ -1,0 +1,35 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .home-control-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+  }
+  
+  .home-title {
+    font-size: 24px;
+    color: #3498db;
+    margin-bottom: 20px;
+  }
+  
+  .add-product-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: 0.3s;
+  }
+  
+  .add-product-link:hover {
+    background-color: #2980b9;
+  }
+  

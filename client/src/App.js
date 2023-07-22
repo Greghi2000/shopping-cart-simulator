@@ -39,7 +39,7 @@ function App() {
 // is defined here, it will now know when you click on anything that has that link where to send you and what to display
 
 //WHAT IS LEFT TO DO:
-//Add search bar, set state to false when bar is emtpy/no words.
+//Add route guard for the register/create account
 //Implement auth in backend
 //Improve UI, maybe material design if i have time?
 
