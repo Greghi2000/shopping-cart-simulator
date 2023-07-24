@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setIsActive, setFilteredProducts } from '../store/filter';
 import './SearchBar.css'
+import { Button } from '@mui/material';
 
 const SearchBar = () => {
   const [searchParam, setSearchParam] = useState('');
@@ -37,7 +38,7 @@ const SearchBar = () => {
         placeholder="Enter search term"
         className="search-input"
       />
-      <button onClick={handleSearch} className="search-button">Search</button>
+      <Button onClick={handleSearch} className="search-button">Search</Button>
       {/* {!isSearchEmpty && <p className="search-warning">Please enter a search term</p>} */}
     </div>
   )

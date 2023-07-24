@@ -5,6 +5,7 @@ import './NavBar.css';
 import { getCartById, getCartItemsByCartId, deleteAllFromCart, getTotalPrice } from "../utils/api";
 import { useEffect, useState } from "react";
 import './CartContainer.css';
+import { Button } from "@mui/material";
 
 
 const CartContainer = () => {
@@ -63,9 +64,9 @@ const CartContainer = () => {
         <h4>
           Total: <span>${newCartTotalPrice !== null ? newCartTotalPrice : 'N/A'}</span>
         </h4>
-        <button onClick={handleClearCart} className="clear-button">
+        <Button onClick={handleClearCart} className="clear-button">
           Clear Cart
-        </button>
+        </Button>
       </footer>
     </section>
     );

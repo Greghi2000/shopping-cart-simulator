@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
-import './NavBar.css';
-import { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../AuthContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
 import { setIsActive } from "../store/filter";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Button from '@mui/material/Button';
+import './NavBar.css';
+import { AuthContext } from '../AuthContext';
 import NavLink from './NavLink';
 
 
@@ -24,7 +24,7 @@ const NavBar = () => {
       <>
         <nav className="navbar">
           <div className="nav-center">
-            <Link to="/">
+            <Link className='nav-title' to="/">
               <h3>Allerg.ly</h3>
             </Link>
             {user ? (
@@ -48,7 +48,7 @@ const NavBar = () => {
                 </div>
                 <div className="nav-container">
                   <Link to="/cart" className="nav-option">
-                    <FontAwesomeIcon icon={faShoppingCart} className="cart-icon" />
+                    <ShoppingCartIcon className="cart-icon" />
                     <span className="total-amount">{amount}</span>
                   </Link>
                 </div>

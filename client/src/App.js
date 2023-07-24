@@ -12,6 +12,7 @@ import ConfirmSignUp from './pages/ConfirmSignUp';
 import LogIn from './pages/LogIn';
 import UserPage from './pages/UserPage';
 import RouteGuard from './components/RouteGuard';
+import '@fontsource/roboto';
 function App() {
   return (
     <>
@@ -34,17 +35,5 @@ function App() {
     </>
   )
 }
-
-// In app is where we define all the routes. These routes defined in app are then looked 
-// at by react in smaller pieces of the app. Since the route of where that route should go and what component to render
-// is defined here, it will now know when you click on anything that has that link where to send you and what to display
-
-//WHAT IS LEFT TO DO:
-//Implement auth in backend
-//Improve UI, maybe material design if i have time?
-
-
-//Build pipeline using terraform
-//Use material design for frontend ui
 
 export default App;

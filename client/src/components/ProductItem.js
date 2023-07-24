@@ -5,6 +5,8 @@ import { addProductToCart, getCartItemsByCartId, getProductById, updateCartItemQ
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 
@@ -74,28 +76,38 @@ const ProductItem = ({ ID }) => {
       <>
       {currentProduct ? (
         <div className="product-item">
-          <Link to={`/products/${currentProduct._ID}`}>
+          <Link className='product-title' to={`/products/${currentProduct._ID}`}>
             <h2>{currentProduct._title}</h2>
           </Link>
           <p>{currentProduct._description}</p>
-          {/* <p>This is ID: {currentProduct._ID||id}</p> */}
           <p className="price">Price: ${currentProduct._price}</p>
           <img className="img-background" src={currentProduct._imageURL} alt={currentProduct._title} />
-          <button onClick={handleAddToCart} className="add-to-cart-btn">
-            Add to Cart
-          </button>
-          <select onChange={handleSelectChange}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+          <Button variant="contained" color="primary" size="small" onClick={handleAddToCart} className="add-to-cart-btn">
+          <ShoppingCartIcon /> Add to Cart
+          </Button>
+          <FormControl variant="outlined" className="select-dropdown">
+            <InputLabel id="quantity-label">Quantity</InputLabel>
+            <Select
+            className='quantity-dropdown'
+              labelId="quantity-label"
+              id="quantity-select"
+              size='small'
+              value={quantitySelected}
+              onChange={handleSelectChange}
+              label="Quantity"
+            >
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+            </Select>
+          </FormControl>
           <hr />
         </div>
       ) : (
