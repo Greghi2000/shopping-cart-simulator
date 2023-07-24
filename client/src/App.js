@@ -27,11 +27,12 @@ function App() {
           <Route index element={<ProductList/>} />
           <Route path=":id" element={<ProductItem/>} />
           <Route path="add-new-product" element={<AddProduct/>} />
+          <Route path="filtered-by/:allergenID" element={<ProductList/>} />
         </Route>
         <Route path="*" element={<NotFound/>}/>
       </Routes>
     </>
-  );
+  )
 }
 
 // In app is where we define all the routes. These routes defined in app are then looked 
@@ -39,7 +40,6 @@ function App() {
 // is defined here, it will now know when you click on anything that has that link where to send you and what to display
 
 //WHAT IS LEFT TO DO:
-//Add route guard for the register/create account
 //Implement auth in backend
 //Improve UI, maybe material design if i have time?
 
@@ -47,11 +47,4 @@ function App() {
 //Build pipeline using terraform
 //Use material design for frontend ui
 
-
-//getCurrentUser SET STATE TO THIS, whatevre it returns set the user state to it in the auth.js file
-
 export default App;
-
-// numero risultati produs
-// button active change color
-// products drop of allergens displaying prods

@@ -13,7 +13,7 @@ const CartContainer = () => {
     const cartChanged = useSelector((state) => state.cart.cartChange)
     const [cartTotalPrice, setCartTotalPrice] = useState(0)
     useEffect(() => {
-        getCartItemsByCartId(1) // when auth is done will be user.id
+        getCartItemsByCartId(1)
         .then(data => {
             console.log('Cart by id ', data)
             dispatch(setCartItemsByCartId(data))
@@ -22,7 +22,7 @@ const CartContainer = () => {
         .catch(error => {
             console.error('Error:', error);
         });
-        getTotalPrice(1) // when auth is done will be user.id
+        getTotalPrice(1)
         .then(data => {
             if (data && data.length > 0) {
                 setCartTotalPrice(data)
@@ -37,7 +37,7 @@ const CartContainer = () => {
     }
     if (cartItems.length < 1) {
         return (
-            <section>
+            <section className="empty-cart">
                 <h2>Your cart</h2>
                 <h4>is currently empty</h4>
             </section>

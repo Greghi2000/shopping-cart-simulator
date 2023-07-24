@@ -1,14 +1,24 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './NavBar.css';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { setIsActive } from "../store/filter";
+import NavLink from './NavLink';
+
 
 const NavBar = () => {
     const amount = useSelector((store) => store.cart.cartItems.length);
     const { user } = useContext(AuthContext)
+    const allergens = useSelector((state) => state.filter.allergens)
+    const dispatch = useDispatch()
+
+
+    const handleOnClick = () => {
+      dispatch(setIsActive(false))
+    }
 
     return (
       <>
@@ -20,9 +30,16 @@ const NavBar = () => {
             {user ? (
               <>
                 <div className="nav-container">
+                  <div className="dropdown">
                   <Link to="/products" className="nav-option">
-                    Products
+                    <span onClick={() => handleOnClick} className="dropbtn">Products</span>
                   </Link>
+                    <div className="dropdown-content">
+                      {allergens.map((allergen, index) => (
+                        <NavLink key={index} allergen={allergen._allergenName} allergenID={allergen._ID} />
+                      ))} 
+                    </div>
+                  </div>
                 </div>
                 <div className="nav-container">
                   <Link to="/profile" className="nav-option">

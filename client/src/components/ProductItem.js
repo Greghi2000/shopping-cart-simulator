@@ -78,9 +78,9 @@ const ProductItem = ({ ID }) => {
             <h2>{currentProduct._title}</h2>
           </Link>
           <p>{currentProduct._description}</p>
-          <p>This is ID: {currentProduct._ID||id}</p>
+          {/* <p>This is ID: {currentProduct._ID||id}</p> */}
           <p className="price">Price: ${currentProduct._price}</p>
-          <img src={currentProduct._imageURL} alt={currentProduct._title} />
+          <img className="img-background" src={currentProduct._imageURL} alt={currentProduct._title} />
           <button onClick={handleAddToCart} className="add-to-cart-btn">
             Add to Cart
           </button>

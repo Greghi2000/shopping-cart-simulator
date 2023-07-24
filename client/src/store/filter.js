@@ -2,7 +2,8 @@ const { createSlice } = require("@reduxjs/toolkit")
 
 const initialState = {
     isActive: false,
-    filteredProducts: []
+    filteredProducts: [],
+    allergens: []
 }
 
 const filterSlice = createSlice({
@@ -14,9 +15,12 @@ const filterSlice = createSlice({
       },
       setFilteredProducts: (state, action) => {
         state.filteredProducts = action.payload
+      },
+      setAllergens: (state, action) => {
+        state.allergens = action.payload
       }
     },
 })
 
-export const { setIsActive, setFilteredProducts } = filterSlice.actions;
+export const { setIsActive, setFilteredProducts, setAllergens } = filterSlice.actions;
 export default filterSlice.reducer

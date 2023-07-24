@@ -1,17 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getCartItemsByCartId } from "../utils/api";
+import { getProducts, getCartItemsByCartId, getProductsNotContainingAllergen } from "../utils/api";
 import React, { useEffect } from 'react';
 import { setProducts } from '../store/product';
 import ProductItem from '../components/ProductItem'
 import { setCartChange, setCartItemsByCartId } from "../store/cart";
 import './ProductList.css'
+import { useParams } from "react-router-dom";
+import { setFilteredProducts, setIsActive } from "../store/filter";
 
 const ProductList = () => {
+  const {allergenID} = useParams()
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.items)
   const cartChanged = useSelector((state) => state.cart.cartChange)
   const filterListener = useSelector((state) => state.filter.isActive)
   const filteredProducts = useSelector((state) => state.filter.filteredProducts)
+  const isActive = useSelector((state) => state.filter.isActive)
+
+  useEffect(() => {
+    getProductsNotContainingAllergen(allergenID)
+    .then(data => {
+        console.log(allergenID)
+        console.log(data)
+        dispatch(setFilteredProducts(data))
+        dispatch(setIsActive(true))
+    })
+    .catch(error => {
+      console.error('Error:', error)
+    })
+  }, [dispatch])
 
   useEffect(() => {
     getCartItemsByCartId(1) // when auth is done will be user.id
@@ -26,20 +43,19 @@ const ProductList = () => {
 }, [dispatch, cartChanged])
 
   useEffect(() => {
-    console.log('Use effect for prods');
     getProducts()
       .then((data) => {
-        console.log('This is the prod data:', data);
-        dispatch(setProducts(data));
+        dispatch(setProducts(data))
       })
       .catch(error => {
         console.error('Error:', error);
       });
   }, [dispatch])
 
-
   return (
     <>
+    {isActive ? (<h2 className="product-count">There are currently {filteredProducts ? filteredProducts.length : "loading"} products on display</h2>) : 
+    (<h2 className="product-count">There are currently {products ? products.length : "loading"} products on display</h2>)}
       <div className="product-list">
         {filterListener && filteredProducts && filteredProducts.length > 0 ? (
           filteredProducts.map(product => (
@@ -62,7 +78,7 @@ const ProductList = () => {
         )}
       </div>
     </>
-    );
-};
+  )
+}
 
 export default ProductList;

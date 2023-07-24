@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { signUp } from "../auth"
 import { useNavigate } from "react-router-dom"
+import './SignUpPage.css'
 
 const SignUpPage = () => {
     const [username, setUsername] = useState("")
@@ -40,31 +41,34 @@ const SignUpPage = () => {
     )
   }
     return (
-        <div>
-          <h2>SignUp</h2>
-          <form onSubmit={handleSubmit}>
-            <input
+      <div className="signup-container">
+      <h2>SignUp</h2>
+      <form onSubmit={handleSubmit}>
+          <input
+              className="input-field"
               type="text"
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
+          />
+          <input
+              className="input-field"
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
+          />
+          <input
+              className="input-field"
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
-            <button type="submit">SignUp</button>
-          </form>
-          {error && <p>{error}</p>}
-        </div>
+          />
+          <button className="confirm-btn" type="submit">SignUp</button>
+      </form>
+      {error && <p>{error}</p>}
+  </div>
     )
 }
  

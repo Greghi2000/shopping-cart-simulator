@@ -15,23 +15,35 @@ exports.getAllAllergens = (req, res) => {
 }
 
 exports.getAllProductsNotContainingAllergen = (req, res) => {
-    const allergenId = req.params.id
-    const query = `
-        SELECT Product.* 
-        FROM Product 
-        LEFT JOIN Product_Allergen ON Product.ID = Product_Allergen.ProductID 
-        WHERE Product_Allergen.AllergenID != ? OR Product_Allergen.ProductID IS NULL
-    `;
+    const allergenId = req.params.id;
+    let query
+    if (allergenId == 9) {
+        query = `
+            SELECT Product.* 
+            FROM Product 
+            WHERE Product.ID IN (
+                SELECT ProductID FROM Product_Allergen WHERE AllergenID = ?
+            )
+        `;
+    } else {
+        query = `
+            SELECT Product.* 
+            FROM Product 
+            WHERE Product.ID NOT IN (
+                SELECT ProductID FROM Product_Allergen WHERE AllergenID = ?
+            )
+        `;
+    }
 
     pool.query(query, [allergenId], (error, results) => {
         if (error) {
-            console.error('Error executing the query', error)
-            res.status(500).json({ error: 'Internal Server Error' })
+            console.error('Error executing the query', error);
+            res.status(500).json({ error: 'Internal Server Error' });
         } else {
             const products = results.map(row => new Product(row.ID, row.Title, row.Price, row.Description, row.ImageURL));
             res.status(200).json(products);
         }
-    })
+    });
 }
 
 exports.getSearchedProducts = (req, res) => {

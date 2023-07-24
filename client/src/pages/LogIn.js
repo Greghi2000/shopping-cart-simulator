@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../AuthContext";
+import './LogIn.css'
 
 const LogIn = () => {
   const [username, setUsername] = useState("");
@@ -29,25 +30,27 @@ const LogIn = () => {
   }
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input
+          className="input-field"
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
+          className="input-field"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <button className="confirm-btn" type="submit">Login</button>
         <h2>Register</h2>
         <Link to="/signUp">
-          <button>Register</button>
+          <button className="confirm-btn">Register</button>
         </Link>
       </form>
       {error && <p>{error}</p>}

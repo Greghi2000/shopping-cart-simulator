@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { getAllAllergens, getProductsNotContainingAllergen } from '../utils/api';
-import { useDispatch } from 'react-redux';
-import { setIsActive, setFilteredProducts } from '../store/filter';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsActive, setFilteredProducts, setAllergens } from '../store/filter';
 import './ProductFilter.css'
 
 const ProductFilter = () => {
-    const dispatch = useDispatch()
-  const [allergens, setAllergens] = useState([]);
+  const dispatch = useDispatch()
+  const allergens = useSelector((state) => state.filter.allergens)
 
   useEffect(() => {
     getAllAllergens()
-      .then(data => setAllergens(data))
+      .then(data => dispatch(setAllergens(data)))
       .catch(console.error);
     }, [])
 
